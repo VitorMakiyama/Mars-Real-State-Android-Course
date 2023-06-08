@@ -37,7 +37,6 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface MarsApiService {
-    //
     // Using suspend makes this a Coroutine function, automatically integrated in Retrofit and Moshi
     @GET("realestate")
     suspend fun getProperties(): List<MarsProperty>
