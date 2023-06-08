@@ -20,8 +20,21 @@ package com.example.android.marsrealestate
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.android.marsrealestate.network.MarsProperty
+import com.example.android.marsrealestate.overview.PhotoGridAdapter
+
+/**
+ * With this adapter, the DataBinding class observes automatically the LiveData and can
+ *  update the UI with the new data
+ */
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, dataList: List<MarsProperty>?) {
+    val adapter = recyclerView.adapter as PhotoGridAdapter
+    adapter.submitList(dataList)
+}
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imageUrl: String?) {
