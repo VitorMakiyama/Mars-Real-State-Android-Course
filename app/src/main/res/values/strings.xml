@@ -25,6 +25,6 @@
     <string name="display_type">For %s</string>
     <string name="display_price_monthly_rental">$%,.0f/month</string>
     <string name="display_price">$%,.0f</string>
-    <string name="grid_view_item_content_description">An image from the Mars surface, to ilustrate a real estate</string>
+    <string name="grid_view_item_content_description">An image from the Mars surface, to illustrate a real estate</string>
     <string name="statusImage">This image shows an animation while loading the data from the internet, or an icon of \"no connection\"</string>
 </resources>

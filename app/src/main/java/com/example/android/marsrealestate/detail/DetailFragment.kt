@@ -29,12 +29,21 @@ import com.example.android.marsrealestate.databinding.FragmentDetailBinding
  */
 class DetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
-        @Suppress("UNUSED_VARIABLE")
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        /* Get the arguments form the bundle (using '!!' will throw an nullPointerException, which shouldn't happen
+        but it is still good to implement error handling in production code!) */
+        val marsProperty = DetailFragmentArgs.fromBundle(arguments!!).selectedProperty
+
+        // Creating the viewModel by using ViewModelProvider to use an factory to create it
+        val viewModelFactory = DetailViewModelFactory(marsProperty, application)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
+        binding.viewModel = viewModel
+
         return binding.root
     }
 }
