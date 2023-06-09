@@ -19,12 +19,15 @@ package com.example.android.marsrealestate.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://mars.udacity.com/"
+
+// Enum that gives us the possible parameters to filter the results from the web service
+enum class MarsApiFilter(val value: String) {SHOW_ALL("all"), SHOW_BUY("buy"), SHOW_RENT("rent")}
 
 // Creates a Moshi object with the MoshiBuilder giving it an adapter
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -39,7 +42,7 @@ private val retrofit = Retrofit.Builder()
 interface MarsApiService {
     // Using suspend makes this a Coroutine function, automatically integrated in Retrofit and Moshi
     @GET("realestate")
-    suspend fun getProperties(): List<MarsProperty>
+    suspend fun getProperties(@Query("filter") type: String): List<MarsProperty>
 }
 
 /** Since the retrofit.create() is an expensive call, we expose our API to the rest of the app using

@@ -29,5 +29,5 @@ data class MarsProperty(
     // A double can store any number value of a JSON
     val price: Double
 ) : Parcelable {
-    val isRental = type == "rental"
+    val isRental = type == "rent"
 }
